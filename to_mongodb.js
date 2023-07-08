@@ -2,8 +2,12 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const fs = require('fs');
+const dotenv = require('dotenv');
 
-mongoose.connect("mongodb://0.0.0.0:27017/covid", {
+dotenv.config({ path: './config.env' });
+MONGODB_URI = process.env.PRODUCTION_MONGODB_URI
+
+mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
@@ -18,8 +22,6 @@ app.use(express.json());
 
 const covidSchema = require('./models/covidCentreSchema');
 const sampleData = JSON.parse(fs.readFileSync('./dummy_data.json', 'utf-8'));
-
-console.log(sampleData)
 
 const uploadData = async () => {
     try {

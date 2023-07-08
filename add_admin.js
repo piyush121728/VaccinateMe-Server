@@ -1,8 +1,12 @@
 const express = require('express');
 const admins = require('./models/adminSchema');
+const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://0.0.0.0:27017/covid", {
+dotenv.config({ path: './config.env' });
+MONGODB_URI = process.env.PRODUCTION_MONGODB_URI;
+
+mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
