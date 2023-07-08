@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 
 dotenv.config({ path: './config.env' });
-require('./Config/Database');
+require('./config/Database');
 
 const PORT = process.env.PORT || 80;
 
